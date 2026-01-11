@@ -1,24 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyaw Thi Ha Htun | Multi-Talented Digital Expert</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #050a18; color: white; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; }
 
-  <title>HTML</title>
-  
-  <!-- HTML -->
-  
+        /* Hero Section */
+        .hero {
+            height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: radial-gradient(circle, #101d42 0%, #050a18 100%); text-align: center; padding: 20px;
+        }
+        .title-name { font-size: 3.5rem; color: #4facfe; font-weight: bold; text-shadow: 0 0 20px rgba(79, 172, 254, 0.6); }
+        .subtitle { font-size: 1rem; letter-spacing: 3px; color: #94a3b8; text-transform: uppercase; margin-top: 10px; }
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="style.css">
+        /* Profile & Floating Icons */
+        .profile-container { position: relative; width: 280px; height: 350px; margin: 40px 0; }
+        .profile-img { 
+            width: 100%; height: 100%; object-fit: cover; border-bottom: 4px solid #4facfe; border-radius: 20px; 
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); 
+        }
+        
+        .floating-icon {
+            position: absolute; width: 50px; height: 50px; background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(79, 172, 254, 0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(8px); color: #4facfe; font-size: 1.2rem; animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .icon-1 { top: 0%; left: -20%; } .icon-2 { top: 0%; right: -20%; }
+        .icon-3 { bottom: 40%; left: -35%; } .icon-4 { bottom: 40%; right: -35%; }
+        .icon-5 { bottom: 5%; left: 35%; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+        .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 0.9rem; }
+        .btn-view { background: linear-gradient(45deg, #00f2fe, #4facfe); color: #050a18; }
+        .btn-contact { border: 2px solid #4facfe; color: white; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(79, 172, 254, 0.5); }
+
+        /* Services Grid */
+        .content-section { width: 95%; max-width: 1000px; background: #0f172a; border-radius: 25px; padding: 40px; margin-top: 60px; border: 1px solid rgba(255,255,255,0.05); }
+        h2 { margin-bottom: 35px; color: #4facfe; border-left: 5px solid #4facfe; padding-left: 15px; font-size: 1.8rem; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .skill-card { background: rgba(255,255,255,0.02); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .skill-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-10px); border-color: #4facfe; }
+        .skill-card i { font-size: 2.5rem; color: #4facfe; margin-bottom: 15px; }
+        .skill-card h3 { margin-bottom: 10px; font-size: 1.3rem; }
+        .skill-card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
+
+        /* Contact Form */
+        .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; text-align: left; }
+
+input, textarea, select { padding: 15px; background: #1e293b; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-size: 1rem; outline: none; }
+        #status { text-align: center; margin-top: 15px; font-weight: bold; }
+
+        footer { margin: 60px 0; color: #475569; text-align: center; }
+    </style>
 </head>
-
 <body>
-  <p>Hello Hlaing Wai Lwin မိသားစုမှကျိုဆိုပါတယ်</p>
-  <!-- Project -->
-  <script src="main.js"></script>
+
+    <section class="hero">
+        <h1 class="title-name">Kyaw Thi Ha Htun</h1>
+        <p class="subtitle">IT Specialist • Creative Designer • Bot Developer</p>
+
+        <div class="profile-container">
+            <img src="https://i.postimg.cc/gk70n7f4/IMG-20250413-130035.webp" alt="Kyaw Thi Ha Htun" class="profile-img">
+            <div class="floating-icon icon-1" title="Web Dev"><i class="fas fa-code"></i></div>
+            <div class="floating-icon icon-2" title="Telegram Bot"><i class="fab fa-telegram"></i></div>
+            <div class="floating-icon icon-3" title="Boosting"><i class="fas fa-rocket"></i></div>
+            <div class="floating-icon icon-4" title="Logo Design"><i class="fas fa-pen-nib"></i></div>
+            <div class="floating-icon icon-5" title="Jersey Design"><i class="fas fa-tshirt"></i></div>
+        </div>
+
+        <div class="btn-group">
+            <a href="#services" class="btn btn-view">What I Offer</a>
+            <a href="#contact" class="btn btn-contact">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="services" class="content-section">
+        <h2>Premium Services</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-telegram-plane"></i>
+                <h3>Telegram Bot Development</h3>
+                <p>သင့်လုပ်ငန်းအတွက် စိတ်ကြိုက် Bot များ (ဥပမာ - စာပြန်ပေးခြင်း၊ အချက်အလက်စုဆောင်းခြင်း၊ Payment စနစ်) ကို အကောင်းဆုံး ဖန်တီးပေးပါသည်။</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Development</h3>
+                <p>Professional Website များ၊ Landing Pages များနှင့် Portfolio များကို ခေတ်မီ Design များဖြင့် ရေးသားဖန်တီးပေးပါသည်။</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-rocket"></i>
+                <h3> Boosting Service</h3>
+                <p>Facebook နှင့် Social Media Page များ ပိုမိုကျယ်ပြန့်လာစေရန် ထိရောက်သော Boosting ဝန်ဆောင်မှုပေးပါသည်။</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Graphic Design</h3>
+                <p>Brand Logo များ နှင့် အသင်းအဖွဲ့များအတွက် စတိုင်ကျသော Custom Jersey Design များ ရေးဆွဲပေးပါသည်။</p>
+            </div>
+    </section>
+
+    <section id="contact" class="content-section" style="margin-bottom: 50px;">
+        <h2><i class="fab fa-telegram"></i> Hire Kyaw Thi Ha Htun</h2>
+        <form id="telegramForm">
+            <div class="input-group">
+                <input type="text" id="userName" placeholder="သင့်အမည်" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="contactInfo" placeholder="telegram Usernameထည့်ပေးပါ" required>
+            </div>
+            <div class="input-group">
+                <select id="workType">
+                    <option value="Telegram Bot">Telegram Bot Development</option>
+                    <option value="Web/Boost">Web Development & Boosting</option>
+                    <option value="Design">Logo & Jersey Design</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <textarea id="userMsg" rows="4" placeholder="အလုပ်အကြောင်းအရာ အကျဉ်းချုပ်..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-view" style="width:100%; border:none; cursor:pointer;">စာပို့ရန် (Send via Telegram)</button>
+            <p id="status"></p>
+        </form>
+    </section>
+
+    <footer>&copy; 2026 Kyaw Thi Ha Htun. All Rights Reserved.</footer>
+
+<script>
+        const BOT_TOKEN = "8403085337:AAEBIEEseKf0Fv8tWqlOVHp_e8Jf6iKLiCE";
+        const CHAT_ID = "8582088849";
+
+        document.getElementById('telegramForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const contact = document.getElementById('contactInfo').value;
+            const type = document.getElementById('workType').value;
+            const msg = document.getElementById('userMsg').value;
+            const status = document.getElementById('status');
+
+            const fullMsg = 📩 *Portfolio Project Inquiry*\n\n👤 Name: ${name}\n📞 Contact: ${contact}\n🛠 Service: ${type}\n📝 Message: ${msg};
+            const url = https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(fullMsg)}&parse_mode=Markdown;
+
+            status.innerText = "ပို့နေပါသည်...";
+            fetch(url).then(res => {
+                if(res.ok) {
+                    status.innerText = "အောင်မြင်စွာ ပို့ပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်။";
+                    status.style.color = "#00f2fe";
+                    this.reset();
+                } else { status.innerText = "Error: Token သို့မဟုတ် Chat ID စစ်ဆေးပါ။"; }
+            });
+        });
+    </script>
 </body>
 </html>
-့<button> Wifi Name is ChitThe Oo 30 minutes ဈေး=၅၀၀ ၁:၃၀ ဈေး=၁၀၀၀ ၂:၀၀ဈေး=၁၅၀၀ ၃:၀၀ဈေး=၂၀၀၀ ၅:၀၀ဈေး=၂၅၀၀ ၁၀:၀၀ဈေး=၃၀၀ pavement က Kpay phone number is 09960848590 Kpay name is Ma May Tha Zin Phue </button>
-  <button> Wifi name is Chan Yate Wai အိမ်ထဲပဲသုံးရမှာ မနတ်ဖွင့်တဲ့အချိန်ကနေညနေ၆နာရီအထိဈေး=၃၀၀၀ pavement က Kpay phone number is 09970573598 Kpay name is Chit Thae Oo</button>
