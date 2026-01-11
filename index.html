@@ -39,7 +39,7 @@
         /* Buttons */
         .btn-group { display: flex; gap: 15px; margin-top: 20px; }
         .btn { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 0.9rem; }
-        .btn-view { background: linear-gradient(45deg, #00f2fe, #4facfe); color: #050a18; }
+        .btn-view { background: linear-gradient(45deg, #00f2fe, #4facfe); color: #050a18; border: none; cursor: pointer; }
         .btn-contact { border: 2px solid #4facfe; color: white; }
         .btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(79, 172, 254, 0.5); }
 
@@ -56,8 +56,8 @@
 
         /* Contact Form */
         .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; text-align: left; }
-        input, textarea, select { padding: 15px; background: #1e293b; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-size: 1rem; outline: none; }
-        #status { text-align: center; margin-top: 15px; font-weight: bold; }
+        input, textarea, select { padding: 15px; background: #1e293b; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; font-size: 1rem; outline: none; width: 100%; }
+        #status { text-align: center; margin-top: 15px; font-weight: bold; min-height: 24px; }
 
         footer { margin: 60px 0; color: #475569; text-align: center; }
     </style>
@@ -106,6 +106,7 @@
                 <h3>Graphic Design</h3>
                 <p>Brand Logo များ နှင့် အသင်းအဖွဲ့များအတွက် စတိုင်ကျသော Custom Jersey Design များ ရေးဆွဲပေးပါသည်။</p>
             </div>
+        </div>
     </section>
 
     <section id="contact" class="content-section" style="margin-bottom: 50px;">
@@ -115,7 +116,7 @@
                 <input type="text" id="userName" placeholder="သင့်အမည်" required>
             </div>
             <div class="input-group">
-                <input type="text" id="contactInfo" placeholder="telegram Usernameထည့်ပေးပါ" required>
+                <input type="text" id="contactInfo" placeholder="Telegram Username (သို့) ဖုန်းနံပါတ်" required>
             </div>
             <div class="input-group">
                 <select id="workType">
@@ -127,7 +128,7 @@
             <div class="input-group">
                 <textarea id="userMsg" rows="4" placeholder="အလုပ်အကြောင်းအရာ အကျဉ်းချုပ်..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-view" style="width:100%; border:none; cursor:pointer;">စာပို့ရန် (Send via Telegram)</button>
+            <button type="submit" id="submitBtn" class="btn btn-view" style="width:100%;">စာပို့ရန် (Send via Telegram)</button>
             <p id="status"></p>
         </form>
     </section>
@@ -135,27 +136,56 @@
     <footer>&copy; 2026 Kyaw Thi Ha Htun. All Rights Reserved.</footer>
 
     <script>
+        // အရေးကြီး - သင်ရလာမယ့် Personal Chat ID ကို အောက်က နေရာမှာ အစားထိုးပါ
         const BOT_TOKEN = "8403085337:AAEBIEEseKf0Fv8tWqlOVHp_e8Jf6iKLiCE";
-        const CHAT_ID = "8582088849";
+        const CHAT_ID = "8582088849"; // ဒီနေရာမှာ သင့် ID အမှန်ကို ထည့်ပါ
 
         document.getElementById('telegramForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const name = document.getElementById('userName').value;
             const contact = document.getElementById('contactInfo').value;
             const type = document.getElementById('workType').value;
             const msg = document.getElementById('userMsg').value;
             const status = document.getElementById('status');
+            const submitBtn = document.getElementById('submitBtn');
 
-            const fullMsg = `📩 *Portfolio Project Inquiry*\n\n👤 Name: ${name}\n📞 Contact: ${contact}\n🛠 Service: ${type}\n📝 Message: ${msg}`;
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(fullMsg)}&parse_mode=Markdown`;
+            // Message Format
+            const fullMsg = `📩 *New Inquiry Form*\n\n👤 *Name:* ${name}\n📞 *Contact:* ${contact}\n🛠 *Service:* ${type}\n📝 *Message:* ${msg}`;
 
-            status.innerText = "ပို့နေပါသည်...";
-            fetch(url).then(res => {
-                if(res.ok) {
-                    status.innerText = "အောင်မြင်စွာ ပို့ပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်။";
+            status.innerText = "ခဏစောင့်ပါ... ပို့နေပါသည်...";
+            status.style.color = "#4facfe";
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.5";
+
+            // Telegram API Call
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: fullMsg,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.ok) {
+                    status.innerText = "✅ အောင်မြင်စွာ ပို့ပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်။";
                     status.style.color = "#00f2fe";
                     this.reset();
-                } else { status.innerText = "Error: Token သို့မဟုတ် Chat ID စစ်ဆေးပါ။"; }
+                } else {
+                    status.innerText = "❌ ပို့လို့မရပါ။ Bot ကို Start လုပ်ထားဖို့ လိုအပ်ပါတယ်။";
+                    status.style.color = "#ff4d4d";
+                }
+            })
+            .catch(err => {
+                status.innerText = "⚠️ Connection Error! အင်တာနက် ပြန်စစ်ပါ။";
+                status.style.color = "#ff4d4d";
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
             });
         });
     </script>
